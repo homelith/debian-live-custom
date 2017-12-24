@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+# remove install menu from isolinux
+sed -i -e '/include install.cfg/d' isolinux/menu.cfg
+
+# set boot timeout 10s
+sed -i -e 's/timeout 0/timeout 100/' isolinux/isolinux.cfg
