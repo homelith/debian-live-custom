@@ -37,7 +37,7 @@ sshd_config の password auth は hook より後で無効化されている..
 
 - 本家マニュアル
 
-https://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html
+https://live-team.pages.debian.net/live-manual/html/live-manual/index.en.html
 
 - 参考ページ
 
