@@ -46,8 +46,10 @@ http://d.hatena.ne.jp/MIZUNO/20120721/1342844487
 - 必要に応じて wgetrc に proxy 設定
 
 - スケルトンをコピー
-		mkdir -p live-custom/auto
-		cp /usr/share/doc/live-build/examples/auto/* live-custom/auto/*
+```
+	mkdir -p live-custom/auto
+	cp /usr/share/doc/live-build/examples/auto/* live-custom/auto/*
+```
 
 - auto/config 編集
 ```
@@ -75,11 +77,13 @@ http://d.hatena.ne.jp/MIZUNO/20120721/1342844487
 - chroot 中 hook
 
 config/hooks/live/0099-custom.hook.chroot を作成して編集
+
 /usr/share/doc/live-build/examples/hooks/minimal.hook.chroot などを参考に
 
 - binary local hook
 
 config/hooks/live/0099-custom.hook.binary を作成して編集
+
 install メニューの無効化などを行っている
 
 - カスタム配置ファイル
