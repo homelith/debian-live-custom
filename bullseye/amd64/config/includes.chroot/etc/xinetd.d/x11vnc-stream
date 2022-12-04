@@ -1,0 +1,16 @@
+# default: off
+# description: An xinetd internal service which echo's characters back to
+# clients.
+# This is the tcp version.
+service x11vnc-stream
+{
+	disable		= no
+	#type		= INTERNAL
+	id		= x11vnc-stream
+	socket_type	= stream
+	protocol	= tcp
+	user		= root
+	wait		= no
+	server		= /usr/bin/x11vnc
+	server_args	= -auth guess -display :0 -inetd -o /var/log/x11vnc.log
+}

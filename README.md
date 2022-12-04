@@ -54,10 +54,6 @@ LANG=C dpkg-reconfigure console-data
 
 $ startx で起動
 
-- 備忘
-
-sshd_config の password auth は hook より後で無効化されているが、仕組みが不明
-
 ## カスタマイズのメモ
 
 - 本家マニュアル
@@ -110,9 +106,12 @@ lb config noauto \
 
 - binary local hook
   + config/hooks/live/0099-custom.hook.binary を作成して編集
-  * install メニューの無効化などを行っている
+  + install メニューの無効化などを行っている
+  + sshd_config の password auth は hook より後で無効化されているが、仕組みが不明
 
 - カスタム配置ファイル
   + .vimrc -> config/includes.chroot/etc/skel/ , config/includes.chroot/root/ 以下に
   + x11vnc-stream -> config/includes.chroot/etc/xinetd.d/ 以下に
+
+
 

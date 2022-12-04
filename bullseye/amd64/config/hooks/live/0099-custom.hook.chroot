@@ -1,0 +1,54 @@
+#!/bin/sh
+
+## live-build(7) - System Build Scripts
+## Copyright (C) 2006-2015 Daniel Baumann <mail@daniel-baumann.ch>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+set -e
+
+# Removing unused packages
+# removing lightdm disable automatic X login and allow user to boot X by executing `startx`
+for PACKAGE in live-boot-doc live-config-doc nano light-locker lightdm gnome-user-guide
+do
+	if ! apt-get remove -f --purge --yes "${PACKAGE}"
+	then
+		echo "WARNING: ${PACKAGE} isn't installed"
+	fi
+done
+apt-get autoremove --yes || true
+
+# prepare apt-file for searching
+apt-file update
+
+# make fbterm accessible from users
+chmod u+s /usr/bin/fbterm
+
+# add some lines to bashrc
+echo "alias fbterm='fbterm --font-size=16'" >> /etc/skel/.bashrc
+
+# apt-proxy
+echo "#Acquire::http::Proxy \"http://proxy.yoyodyne.com:18023/\";" >> /etc/apt/apt.conf
+
+# replace uim-fep on / off command to "ctrl+space"
+sed -i -e 's/<Shift>\ /<Control>\ /' /usr/share/uim/generic-key-custom.scm
+
+# re-enable ssh password auth (vulnerable !)
+sed -i -e '/PasswordAuthentication no/d' /etc/ssh/sshd_config
+
+# set up x11vnc
+echo "x11vnc-stream 5900/tcp" >> /etc/services
+
+# Removing unused files
+find . -name *~ -print0 | xargs -0 rm -f
+
+rm -rf /var/cache/man/*
+
+# Truncating logs
+for FILE in $(find /var/log/ -type f)
+do
+	: > ${FILE}
+done
