@@ -54,6 +54,13 @@ LANG=C dpkg-reconfigure console-data
 
 $ startx で起動
 
+- ユーザ名がいる場合の対応
+
+```
+username : user
+password : live
+```
+
 ## カスタマイズのメモ
 
 - 本家マニュアル

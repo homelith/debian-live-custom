@@ -18,6 +18,7 @@ lzop
 make
 mbr
 mmc-utils
+msr-tools
 ncftp
 net-tools
 nkf
