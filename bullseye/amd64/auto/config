@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+  --mode debian \
+  --distribution bullseye \
+  --architectures amd64 \
+  --archive-areas "main contrib non-free" \
+  --mirror-bootstrap "http://ftp.jp.debian.org/debian/" \
+  --mirror-chroot "http://ftp.jp.debian.org/debian/" \
+  --mirror-binary "http://ftp.jp.debian.org/debian/" \
+  --bootappend-live " \
+  boot=live components \
+  nox11autologin \
+  locales=ja_JP.UTF-8,en_US.UTF-8 \
+  utc=no \
+  timezone=Asia/Tokyo \
+  keyboard-model=pc105 \
+  keyboard-layouts=jp,us \
+  " \
+  "${@}"

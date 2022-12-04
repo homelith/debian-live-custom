@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+# set boot timeout 10s
+sed -i -e 's/timeout 0/timeout 100/' isolinux/isolinux.cfg
